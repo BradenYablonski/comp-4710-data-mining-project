@@ -12,5 +12,7 @@ fp_processor.generate_frequent_itemsets()
 fp_processor.create_sub_dfs()
 
 sub_dfs = fp_processor.get_sub_dfs()
-# print(sub_dfs['df_Surface_Flat'].head())
+print(sub_dfs['df_Surface_Flat'].head())
 print(list(sub_dfs.keys()))
+a = sub_dfs['df_Surface_Flat']
+print(a['wind_speed'].head())
