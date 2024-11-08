@@ -13,5 +13,8 @@ fp_processor.create_sub_dfs()
 
 sub_dfs = fp_processor.get_sub_dfs()
 sub_dfs_list = list(sub_dfs.keys())
+
+# Get the sub dataset (eg: the first sub dataset with index 0)
 print(sub_dfs[sub_dfs_list[0]])
-print(list(sub_dfs.keys()))
+
+# print(list(sub_dfs.keys())) #list of sub dataset names
