@@ -32,7 +32,7 @@ class FP_Growth_Processor:
             sub_df = sub_dataset_cleaned[
                 sub_dataset_cleaned.apply(lambda row: all(value in row.values for value in pair), axis=1)
             ]
-            self.sub_dfs[sub_df_name] = sub_df
+            self.sub_dfs[sub_df_name] = sub_df.reset_index(drop = True)
     
     def get_sub_dfs(self):
         return self.sub_dfs
