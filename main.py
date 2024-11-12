@@ -1,5 +1,6 @@
 from wildfire_data_processor import WildfireDataProcessor
 from fp_growth_processor import FP_Growth_Processor
+from window_algorithm import *
 
 # Initialize WildfireDataProcessor
 wildfire_processor = WildfireDataProcessor('fp-historical-wildfire-data-2006-2023.xlsx')
@@ -15,7 +16,10 @@ sub_dfs = fp_processor.get_sub_dfs()
 sub_dfs_list = list(sub_dfs.keys())
 
 # Get the sub dataset (eg: the first sub dataset with index 0)
-print(sub_dfs[sub_dfs_list[0]])
-a = sub_dfs[sub_dfs_list[-2]]
-print(a['temperature'].head())
-print(list(sub_dfs.keys())) #list of sub dataset names
+#print(sub_dfs[sub_dfs_list[0]])
+#a = sub_dfs[sub_dfs_list[-2]]
+#print(a['temperature'].head())
+#print(list(sub_dfs.keys())) #list of sub dataset names
+
+window_processor = WindowAlgorithmProcessor(sub_dfs)
+all_rules = window_processor.process_all_dfs()
