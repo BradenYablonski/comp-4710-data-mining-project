@@ -1,6 +1,7 @@
 from wildfire_data_processor import WildfireDataProcessor
 from fp_growth_processor import FP_Growth_Processor
 from window_algorithm import *
+from kmeans_processor import KMeansProcessor
 
 # Initialize WildfireDataProcessor
 wildfire_processor = WildfireDataProcessor('fp-historical-wildfire-data-2006-2023.xlsx')
@@ -23,3 +24,7 @@ sub_dfs_list = list(sub_dfs.keys())
 
 window_processor = WindowAlgorithmProcessor(sub_dfs)
 all_rules = window_processor.process_all_dfs()
+
+#kmeans
+kmeans_processor = KMeansProcessor(sub_dfs)
+kmeans_result = kmeans_processor.perform_clustering()
