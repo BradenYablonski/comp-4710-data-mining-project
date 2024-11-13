@@ -1,6 +1,6 @@
 from wildfire_data_processor import WildfireDataProcessor
 from fp_growth_processor import FP_Growth_Processor
-from window_algorithm import *
+from window_algorithm import WindowAlgorithmProcessor
 from kmeans_processor import KMeansProcessor
 
 # Initialize WildfireDataProcessor
