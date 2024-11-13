@@ -1,6 +1,7 @@
 from wildfire_data_processor import WildfireDataProcessor
 from fp_growth_processor import FP_Growth_Processor
 from window_algorithm import *
+from kmeans_processor import KMeansProcessor
 
 # Initialize WildfireDataProcessor
 wildfire_processor = WildfireDataProcessor('fp-historical-wildfire-data-2006-2023.xlsx')
@@ -31,3 +32,6 @@ for name, rules in all_rules.items():
     for rule in rules:
         print(f"{quantitative_column} => Range: {rule[0]}, Mean of Range: {rule[1]}, Passed the z-test: {rule[2]}")
                     
+#kmeans
+kmeans_processor = KMeansProcessor(sub_dfs)
+kmeans_result = kmeans_processor.perform_clustering()
