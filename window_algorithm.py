@@ -84,6 +84,7 @@ class WindowAlgorithmProcessor:
                     for rule in rules:
                         components = name.split("_")
                         format_string = ""
+                        
                         for i in range(1, len(components)):
                             format_string += components[i] + ", "
                             
@@ -91,7 +92,6 @@ class WindowAlgorithmProcessor:
                         df_rules[name].append(formatted_rule)
                         
                         print(formatted_rule)
-                        # print(f"{self.quantitative_column} => Range: {rule[0]}, Mean of Range: {rule[1]}, Passed the z-test: {rule[2]}")
                      
                 else:
                     print("No Significant Rules Found.")                  
