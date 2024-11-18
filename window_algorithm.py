@@ -55,15 +55,11 @@ class WindowAlgorithmProcessor:
                 
             if A_end - A_start + 1 >= 2:
                 rule_mean = np.mean(sorted_quantitative_values[A_start : A_end + 1])
-                significance = True
-
-                # do z-test
-                
-                if significance:
-                    rules.append(((float(sorted_quantitative_values[A_start]), float(sorted_quantitative_values[A_end])), float(rule_mean), significance))
-                    sub_array = pd.DataFrame(sorted_quantitative_values[A_start : A_end + 1], columns = [self.quantitative_column])
-                    sub_rules = self.window_algorithm(sub_array, rule_mean)
-                    rules.extend(sub_rules)   
+                rules.append(((float(sorted_quantitative_values[A_start]), float(sorted_quantitative_values[A_end])), round(float(rule_mean), 3)))
+                sub_array = pd.DataFrame(sorted_quantitative_values[A_start : A_end + 1], columns = [self.quantitative_column])
+                sub_rules = self.window_algorithm(sub_array, rule_mean)
+                rules.extend(sub_rules)
+                       
                      
             A_start = A_end + 1 # reinitialize A and continue
                         
@@ -76,7 +72,7 @@ class WindowAlgorithmProcessor:
         
         for name, sub_df in self.sub_dfs.items():
             if self.quantitative_column in sub_df.columns and self.fire_size_column in sub_df.columns:
-                print(f"Processing Dataframe: {name}")
+                print(f"\nProcessing Dataframe: {name}")
 
                 fire_size_mean = sub_df[self.fire_size_column].mean()                
                 rules = self.window_algorithm(sub_df, fire_size_mean)
@@ -84,13 +80,19 @@ class WindowAlgorithmProcessor:
                 if rules:
                     print("Rules found:")
                     for rule in rules:
-                        print(f"{self.quantitative_column} => Range: {rule[0]}, Mean of Range: {rule[1]}, Passed the z-test: {rule[2]}")
+                        components = name.split("_")
+                        string = ""
+                        for i in range(1, len(components)):
+                            string += components[i] + ", "
+                                
+                        print(f"{string}temperature range: {rule[0]} ==> {self.fire_size_column}: {round(rule[1], 3)}")
+                        #print(f"{self.quantitative_column} => Range: {rule[0]}, Mean of Range: {rule[1]}, Passed the z-test: {rule[2]}")
                     
                     all_rules[name] = rules 
                 else:
-                    print("No Significant Rules Found.")                  
+                    print("No Significant Rules Found.\n")                  
             else:
-                print(f"Columns {self.quantitative_column} or {self.fire_size_column} could not be found in the data frame.")
+                print(f"Columns {self.quantitative_column} or {self.fire_size_column} could not be found in the data frame.\n")
 
         return all_rules
                

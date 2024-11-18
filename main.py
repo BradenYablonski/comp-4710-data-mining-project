@@ -25,13 +25,7 @@ sub_dfs_list = list(sub_dfs.keys())
 quantitative_column = 'temperature'
 window_processor = WindowAlgorithmProcessor(sub_dfs)
 all_rules = window_processor.process_all_dfs()
-
-print("\n\nAll the found rules:")
-for name, rules in all_rules.items():
-    print(f"\n{name}:")
-    for rule in rules:
-        print(f"{quantitative_column} => Range: {rule[0]}, Mean of Range: {rule[1]}, Passed the z-test: {rule[2]}")
                     
 #kmeans
-kmeans_processor = KMeansProcessor(sub_dfs)
-kmeans_result = kmeans_processor.perform_clustering()
+#kmeans_processor = KMeansProcessor(sub_dfs)
+#kmeans_result = kmeans_processor.perform_clustering()
