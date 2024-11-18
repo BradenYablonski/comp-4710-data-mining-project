@@ -67,8 +67,8 @@ class WindowAlgorithmProcessor:
         
     
     def process_all_dfs(self):
-        all_rules = {}
         fire_size_mean = 0
+        df_rules = {}
         
         for name, sub_df in self.sub_dfs.items():
             if self.quantitative_column in sub_df.columns and self.fire_size_column in sub_df.columns:
@@ -79,20 +79,24 @@ class WindowAlgorithmProcessor:
                 
                 if rules:
                     print("Rules found:")
+                    df_rules[name] = []
+                    
                     for rule in rules:
                         components = name.split("_")
-                        string = ""
+                        format_string = ""
                         for i in range(1, len(components)):
-                            string += components[i] + ", "
-                                
-                        print(f"{string}temperature range: {rule[0]} ==> {self.fire_size_column}: {round(rule[1], 3)}")
-                        #print(f"{self.quantitative_column} => Range: {rule[0]}, Mean of Range: {rule[1]}, Passed the z-test: {rule[2]}")
-                    
-                    all_rules[name] = rules 
+                            format_string += components[i] + ", "
+                            
+                        formatted_rule = f"{format_string}temperature range: {rule[0]} ==> {self.fire_size_column}: {round(rule[1], 3)}"  
+                        df_rules[name].append(formatted_rule)
+                        
+                        print(formatted_rule)
+                        # print(f"{self.quantitative_column} => Range: {rule[0]}, Mean of Range: {rule[1]}, Passed the z-test: {rule[2]}")
+                     
                 else:
-                    print("No Significant Rules Found.\n")                  
+                    print("No Significant Rules Found.")                  
             else:
                 print(f"Columns {self.quantitative_column} or {self.fire_size_column} could not be found in the data frame.\n")
 
-        return all_rules
+        return df_rules
                

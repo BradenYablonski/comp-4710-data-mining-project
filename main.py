@@ -25,6 +25,14 @@ sub_dfs_list = list(sub_dfs.keys())
 quantitative_column = 'temperature'
 window_processor = WindowAlgorithmProcessor(sub_dfs)
 all_rules = window_processor.process_all_dfs()
+
+# prints only the interesting rules
+print("\n\nAll the found rules:")
+for name, rules in all_rules.items():
+    print(f"\n{name}:")
+    for rule in all_rules[name]:
+        print(rule)
+ 
                     
 #kmeans
 #kmeans_processor = KMeansProcessor(sub_dfs)
