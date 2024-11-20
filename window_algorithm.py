@@ -73,13 +73,13 @@ class WindowAlgorithmProcessor:
         
         for name, sub_df in self.sub_dfs.items():
             if self.quantitative_column in sub_df.columns and self.fire_size_column in sub_df.columns:
-                print(f"\nProcessing Dataframe: {name}")
+                # print(f"\nProcessing Dataframe: {name}")
 
-                fire_size_mean = sub_df[self.fire_size_column].mean()                
+                fire_size_mean = sub_df[self.fire_size_column].mean() 
                 rules = self.window_algorithm(sub_df, fire_size_mean)
                 
                 if rules:
-                    print("Rules found:")
+                    # print("Rules found:")
                     df_rules[name] = []
                     
                     for rule in rules:
@@ -92,15 +92,15 @@ class WindowAlgorithmProcessor:
                         range_min, range_max = rule[0]  
                         matching_rows = sub_df[(sub_df[self.quantitative_column] >= range_min) & (sub_df[self.quantitative_column] <= range_max)]
                         row_count = matching_rows.shape[0]
-                        formatted_rule = f"{format_string}{self.quantitative_column} Range: [{range_min}, {range_max}] ==> {self.fire_size_column}: {round(rule[1], 3)} | Matching Rows: {row_count}"  
+                        formatted_rule = f"{format_string}{self.quantitative_column} Range: [{range_min}, {range_max}] ==> {self.fire_size_column}: {rule[1]} | Matching Rows: {row_count}"  
                         df_rules[name].append(formatted_rule)
                         
-                        print(formatted_rule)
+                        # print(formatted_rule)
                      
-                else:
-                    print("No Significant Rules Found.")                  
-            else:
-                print(f"Columns {self.quantitative_column} or {self.fire_size_column} could not be found in the data frame.\n")
+            #     else:
+            #         print("No Significant Rules Found.")                  
+            # else:
+            #     print(f"Columns {self.quantitative_column} or {self.fire_size_column} could not be found in the data frame.\n")
 
         return df_rules
                

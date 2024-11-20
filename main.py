@@ -2,6 +2,7 @@ from wildfire_data_processor import WildfireDataProcessor
 from fp_growth_processor import FP_Growth_Processor
 from window_algorithm import WindowAlgorithmProcessor
 from kmeans_processor import KMeansProcessor
+from z_test_processor import *
 
 # Initialize WildfireDataProcessor
 wildfire_processor = WildfireDataProcessor('fp-historical-wildfire-data-2006-2023.xlsx')
@@ -23,17 +24,23 @@ sub_dfs_list = list(sub_dfs.keys())
 #print(list(sub_dfs.keys())) #list of sub dataset names
 
 quantitative_column = 'temperature'
-window_processor = WindowAlgorithmProcessor(sub_dfs)#, chosen_quantitative_column='relative_humidity')
+window_processor = WindowAlgorithmProcessor(sub_dfs, chosen_quantitative_column=quantitative_column)
 all_rules = window_processor.process_all_dfs()
 
 # prints only the interesting rules
-print("\n\nAll the found rules:")
-for name, rules in all_rules.items():
-    print(f"\n{name}:")
-    for rule in all_rules[name]:
-        print(rule)
+# print("\n\nAll the found rules:")
+# for name, rules in all_rules.items():
+#     print(f"\n{name}:")
+#     for rule in all_rules[name]:
+#         print(rule)
  
                     
 #kmeans
 #kmeans_processor = KMeansProcessor(sub_dfs)
 #kmeans_result = kmeans_processor.perform_clustering()
+
+
+# z-test
+from z_test_processor import Z_Test_Processor
+z_test_processor = Z_Test_Processor(wildfire_processor.sub_dataset_cleaned, all_rules)
+print(z_test_processor.z_test())
