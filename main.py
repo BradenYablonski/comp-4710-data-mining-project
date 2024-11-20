@@ -23,7 +23,7 @@ sub_dfs_list = list(sub_dfs.keys())
 #print(list(sub_dfs.keys())) #list of sub dataset names
 
 quantitative_column = 'temperature'
-window_processor = WindowAlgorithmProcessor(sub_dfs)
+window_processor = WindowAlgorithmProcessor(sub_dfs)#, chosen_quantitative_column='relative_humidity')
 all_rules = window_processor.process_all_dfs()
 
 # prints only the interesting rules

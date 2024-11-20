@@ -69,6 +69,7 @@ class WindowAlgorithmProcessor:
     def process_all_dfs(self):
         fire_size_mean = 0
         df_rules = {}
+        row_count = 0
         
         for name, sub_df in self.sub_dfs.items():
             if self.quantitative_column in sub_df.columns and self.fire_size_column in sub_df.columns:
@@ -87,8 +88,11 @@ class WindowAlgorithmProcessor:
                         
                         for i in range(1, len(components)):
                             format_string += components[i] + ", "
-                            
-                        formatted_rule = f"{format_string}temperature range: {rule[0]} ==> {self.fire_size_column}: {round(rule[1], 3)}"  
+                          
+                        range_min, range_max = rule[0]  
+                        matching_rows = sub_df[(sub_df[self.quantitative_column] >= range_min) & (sub_df[self.quantitative_column] <= range_max)]
+                        row_count = matching_rows.shape[0]
+                        formatted_rule = f"{format_string}{self.quantitative_column} Range: [{range_min}, {range_max}] ==> {self.fire_size_column}: {round(rule[1], 3)} | Matching Rows: {row_count}"  
                         df_rules[name].append(formatted_rule)
                         
                         print(formatted_rule)
