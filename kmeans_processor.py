@@ -11,7 +11,7 @@ class KMeansProcessor:
         kmeans = KMeans()
 
         for key in self.sub_dfs:
-            print(f"{key}:")
+            # print(f"{key}:")
             k_df_drop = self.sub_dfs[key].drop('current_size', axis=1)
             k_encoded = pd.get_dummies(k_df_drop, columns=['fire_position_on_slope', 'wind_direction', 'fire_type', 'weather_conditions_over_fire'])
 
@@ -55,7 +55,7 @@ class KMeansProcessor:
                 result_str = f"{key_join},{temperature_range}, {wind_speed_range}, {humidity_range} ==> {current_size_avg} | {matching_rows}"
                 result_by_label.append(result_str)
 
-                print(result_str)
+                # print(result_str)
 
             k_result[key] = result_by_label
 

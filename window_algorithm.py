@@ -80,7 +80,8 @@ class WindowAlgorithmProcessor:
                 
                 if rules:
                     # print("Rules found:")
-                    df_rules[name] = []
+                    rule_name = "window_" + name + "_" + self.quantitative_column
+                    df_rules[rule_name] = []
                     
                     for rule in rules:
                         components = name.split("_")
@@ -93,7 +94,7 @@ class WindowAlgorithmProcessor:
                         matching_rows = sub_df[(sub_df[self.quantitative_column] >= range_min) & (sub_df[self.quantitative_column] <= range_max)]
                         row_count = matching_rows.shape[0]
                         formatted_rule = f"{format_string}{self.quantitative_column} Range: [{range_min}, {range_max}] ==> {self.fire_size_column}: {rule[1]} | Matching Rows: {row_count}"  
-                        df_rules[name].append(formatted_rule)
+                        df_rules[rule_name].append(formatted_rule)
                         
                         # print(formatted_rule)
                      

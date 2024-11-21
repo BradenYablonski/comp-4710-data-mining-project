@@ -22,5 +22,6 @@ class Z_Test_Processor:
                     p_value = 2 * (1 - stats.norm.cdf(abs(Z)))
                     if p_value < self.alpha:
                         rules_pass[keys].append(val)
+            rules_pass = {k: v for k, v in rules_pass.items() if v}
         else: print("No interesting rule")
         return(rules_pass)
