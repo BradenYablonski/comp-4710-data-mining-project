@@ -53,7 +53,7 @@ class KMeansProcessor:
                 key_join = ','.join(key_split)
 
                 result_str = f"{key_join},{temperature_range}, {wind_speed_range}, {humidity_range} ==> {current_size_avg} | {matching_rows}"
-                result_by_label[i] = [result_str]
+                result_by_label[i] = result_str
 
                 print(result_str)
 
