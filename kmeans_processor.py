@@ -38,7 +38,7 @@ class KMeansProcessor:
                 k_df[f'{col}_max'] = k_df.groupby('label')[col].transform('max')
                 k_df[f'{col}_min'] = k_df.groupby('label')[col].transform('min')
             
-            result_by_label = {}
+            result_by_label = []
 
             for i in k_df['label'].unique():
                 label_data = k_df[k_df['label'] == i]
@@ -53,7 +53,7 @@ class KMeansProcessor:
                 key_join = ','.join(key_split)
 
                 result_str = f"{key_join},{temperature_range}, {wind_speed_range}, {humidity_range} ==> {current_size_avg} | {matching_rows}"
-                result_by_label[i] = result_str
+                result_by_label.append(result_str)
 
                 print(result_str)
 
