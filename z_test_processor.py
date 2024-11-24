@@ -18,10 +18,11 @@ class Z_Test_Processor:
                 for val in self.all_rules[keys]:
                     X_bar = float(val.split(" | ")[0].split(" ")[-1])
                     n = float(val.split(" | ")[1].split(" ")[-1])
-                    Z = (X_bar - mu) / (sigma / np.sqrt(n))
-                    p_value = 2 * (1 - stats.norm.cdf(abs(Z)))
-                    if p_value < self.alpha:
-                        rules_pass[keys].append(val)
+                    if n > 30:
+                        Z = (X_bar - mu) / (sigma / np.sqrt(n))
+                        p_value = 2 * (1 - stats.norm.cdf(abs(Z)))
+                        if p_value < self.alpha:
+                            rules_pass[keys].append(val)
             rules_pass = {k: v for k, v in rules_pass.items() if v}
         else: print("No interesting rule")
         return(rules_pass)
