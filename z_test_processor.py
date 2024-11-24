@@ -2,7 +2,7 @@ import scipy.stats as stats
 import numpy as np
 
 class Z_Test_Processor:
-    def __init__(self, wildfire_cleaned_df, rules, alpha=0.25):
+    def __init__(self, wildfire_cleaned_df, rules, alpha=0.2):
         self.cleaned_df = wildfire_cleaned_df
         self.all_rules = rules
         self.alpha = alpha
