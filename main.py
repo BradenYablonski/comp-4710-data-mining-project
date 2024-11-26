@@ -47,8 +47,10 @@ kmeans_result = kmeans_processor.perform_clustering()
 
 
 # z-test
+print("Window Algorithm result")
 z_test_window = Z_Test_Processor(wildfire_processor.sub_dataset_cleaned, all_rules)
 print(z_test_window.z_test())
 
+print("New Algorithm result")
 z_test_kmeans = Z_Test_Processor(wildfire_processor.sub_dataset_cleaned, kmeans_result)
 print(z_test_kmeans.z_test())
