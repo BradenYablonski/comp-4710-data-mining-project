@@ -32,9 +32,13 @@ Rule pruning is performed by applying z-test.
 This project requires the following Python libraries:
 
 pandas
+
 numpy
+
 scipy
+
 scikit-learn
+
 mlxtend
 
 You can install all dependencies using the requirements.txt file:
