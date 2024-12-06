@@ -15,7 +15,7 @@ This project analyzes wildfire data using data mining techniques, including freq
 
 ## Overview
 
-The project uses wildfire data from 2006 to 2023 to find association rules from multiple categorical and quantitative data simultaneously. 
+The project uses wildfire data ([link](https://open.canada.ca/data/en/dataset/a221e7a0-4f46-4be7-9c5a-e29de9a3447e/resource/27e03b8f-8855-4b9e-8d1e-542297750fc9)) from 2006 to 2023 to find association rules from multiple categorical and quantitative data simultaneously. 
 Our new algorithm combines FP Growth to deal with categorical data and k-means clustering to create clusters for quantitative data. 
 Rule pruning is performed by applying z-test.
 
