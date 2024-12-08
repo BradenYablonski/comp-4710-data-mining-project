@@ -16,6 +16,7 @@ This project analyzes wildfire data using data mining techniques, including freq
 ## Overview
 
 The project uses wildfire data ([link](https://open.canada.ca/data/en/dataset/a221e7a0-4f46-4be7-9c5a-e29de9a3447e/resource/27e03b8f-8855-4b9e-8d1e-542297750fc9)) from 2006 to 2023 to find association rules from multiple categorical and quantitative data simultaneously. 
+The dataset can also be downloaded from the GitHub repo: ([https://github.com/BradenYablonski/comp-4710-data-mining-project](https://github.com/BradenYablonski/comp-4710-data-mining-project)). The dataset is located in the file named fp-historical-wildfire-data-2006-2023.xlsx.
 Our new algorithm combines FP Growth to deal with categorical data and k-means clustering to create clusters for quantitative data. 
 Rule pruning is performed by applying z-test.
 
